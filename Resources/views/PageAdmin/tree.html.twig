@@ -13,6 +13,7 @@ file that was distributed with this source code.
 
 {% import _self as tree %}
 {% macro pages(pages, admin, rootPages) %}
+	{% import _self as self %}
     <ul{% if rootPages %} class="page-tree"{% endif %}>
         {% for page in pages if not page.internal and (not page.parent or not rootPages)%}
             <li>
@@ -25,7 +26,7 @@ file that was distributed with this source code.
                     {% if page.edited %}<span class="label label-warning pull-right">{{ 'pages.edited_label'|trans({}, 'SonataPageBundle') }}</span>{% endif %}
                 </div>
                 {% if page.children|length %}
-                    {{ _self.pages(page.children, admin, false) }}
+                    {{ self.pages(page.children, admin, false) }}
                 {% endif %}
             </li>
         {% endfor %}
