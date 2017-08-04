@@ -238,7 +238,10 @@ abstract class BaseBlockAdmin extends AbstractAdmin
     {
         $service = $this->blockManager->get($block);
 
-        $resolver = new OptionsResolver();
+        // bc SonataBlockBundle for symfony2
+        //$resolver = new OptionsResolver();
+        $resolver = new Class() extends OptionsResolver implements \Symfony\Component\OptionsResolver\OptionsResolverInterface {};
+		
         $service->setDefaultSettings($resolver);
 
         try {
