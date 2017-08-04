@@ -94,7 +94,7 @@ class PageAdminController extends Controller
         $datagrid = $this->admin->getDatagrid();
         $formView = $datagrid->getForm()->createView();
 
-        $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());
+        $this->get('twig.form.renderer')->setTheme($formView, $this->admin->getFilterTheme());
 
         return $this->render($this->admin->getTemplate('tree'), array(
             'action' => 'tree',
